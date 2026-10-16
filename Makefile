@@ -118,12 +118,16 @@ publish:
 
 # Cask'i tap reposuna gh api ile tek dosya olarak yazar (GHBar ile ayni yol).
 tap:
-	@SHA=$$(shasum -a 256 $(DMG) | cut -d' ' -f1); \
+	@set -e; SHA=$$(shasum -a 256 $(DMG) | cut -d' ' -f1); \
 	sed -e "s/{{VERSION}}/$(VERSION)/g" -e "s/{{SHA256}}/$$SHA/g" Packaging/niimbar.rb.template > $(BUILD_DIR)/niimbar.rb; \
 	B64=$$(base64 -i $(BUILD_DIR)/niimbar.rb); \
-	EXISTING=$$(gh api repos/cobanov/homebrew-tap/contents/Casks/niimbar.rb --jq .sha 2>/dev/null || true); \
-	gh api -X PUT repos/cobanov/homebrew-tap/contents/Casks/niimbar.rb -f message="niimbar $(VERSION)" \
-	  -f content="$$B64" $${EXISTING:+-f sha=$$EXISTING} > /dev/null; \
+	if EXISTING=$$(gh api repos/cobanov/homebrew-tap/contents/Casks/niimbar.rb --jq .sha 2>/dev/null); then \
+	  gh api -X PUT repos/cobanov/homebrew-tap/contents/Casks/niimbar.rb -f message="niimbar $(VERSION)" \
+	    -f content="$$B64" -f sha="$$EXISTING" > /dev/null; \
+	else \
+	  gh api -X PUT repos/cobanov/homebrew-tap/contents/Casks/niimbar.rb -f message="niimbar $(VERSION)" \
+	    -f content="$$B64" > /dev/null; \
+	fi; \
 	echo "tap guncellendi: brew install --cask cobanov/tap/niimbar"
 
 # --- Kurulum ------------------------------------------------------------
