@@ -1,0 +1,9 @@
+.build/
+.swiftpm/
+*.xcodeproj
+.DS_Store
+build/
+Packaging/GHBar_MAS.provisionprofile
+.build-mas/
+.wrangler/
+site/install.sh
