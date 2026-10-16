@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/niimbar-icon.png" alt="" width="96" height="96" />
+</p>
+
 <h1 align="center">NiimBar</h1>
 
 <p align="center">
@@ -5,6 +9,7 @@
 </p>
 
 <p align="center">
+  <a href="https://github.com/cobanov/niimbar/releases/latest"><img src="https://img.shields.io/github/v/release/cobanov/niimbar?label=release&color=2eb857" alt="Latest release" /></a>
   <img src="https://img.shields.io/badge/macOS-14%2B-000000?logo=apple" alt="macOS 14+" />
   <img src="https://img.shields.io/badge/license-MIT-2eb857" alt="MIT license" />
 </p>
@@ -28,15 +33,25 @@ label, see exactly what will print, print it.
 
 ## Install
 
-Requires macOS 14 and Swift 6 (Xcode or the command line tools).
+With Homebrew:
+
+```sh
+brew install --cask cobanov/tap/niimbar
+```
+
+Or download the DMG from the [latest release](https://github.com/cobanov/niimbar/releases/latest),
+open it and drag NiimBar to Applications. It is signed and notarized by Apple, and needs macOS 14
+or later.
+
+Connect the B1 with a USB-C **data** cable; it shows up as `/dev/cu.usbmodemB1_*`.
+
+### From source
 
 ```sh
 git clone https://github.com/cobanov/niimbar.git
 cd niimbar
 make install   # builds, bundles and launches /Applications/NiimBar.app
 ```
-
-Connect the B1 with a USB-C **data** cable; it shows up as `/dev/cu.usbmodemB1_*`.
 
 ## Use
 

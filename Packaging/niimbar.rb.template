@@ -1,0 +1,15 @@
+cask "niimbar" do
+  version "{{VERSION}}"
+  sha256 "{{SHA256}}"
+
+  url "https://github.com/cobanov/niimbar/releases/download/v#{version}/NiimBar-#{version}.dmg"
+  name "NiimBar"
+  desc "NIIMBOT B1 label printer in the menu bar"
+  homepage "https://github.com/cobanov/niimbar"
+
+  depends_on macos: :sonoma
+
+  app "NiimBar.app"
+
+  zap trash: "~/Library/Preferences/dev.cobanov.niimbar.plist"
+end
